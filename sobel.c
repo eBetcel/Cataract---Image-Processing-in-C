@@ -16,7 +16,7 @@ Imagem *Sobel (Imagem *Foto)
 	Sobel->height = Foto->height;
 	Sobel->width = Foto->width;
 	Sobel->max = Foto->max;
-
+	//Matriz vertical e horizontal do filtro
 	int kernelx [3][3] = {{-1,0,1 },
 	      			{-2,0,2},
 	      			{-1,0,1}};
@@ -27,7 +27,7 @@ Imagem *Sobel (Imagem *Foto)
 	int pv, ph;
   
 
-
+	//Detecção de arestas
 	for (i=0;i < Foto->height;i++)
 	{
 		for (j=0; j< Foto->width; j++)

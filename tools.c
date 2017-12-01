@@ -28,7 +28,7 @@ void wpbm(FILE *file, Imagem *img)
         	}
     	}
 }
-
+//Função para binarização da imagem
 void binarization(Imagem *img,unsigned int th)
 {
 	int i,j;
@@ -64,7 +64,7 @@ void Eye_fill(Eye *Olho,Circle *Circulo)
 		Olho->y[i]  = Circulo->b + Circulo->r * sin(i * M_PI/180);  
 	}
 }
-
+//Localizar os limites da pupila
 int *Limits(Eye *Olho)
 {
 	int *xy,maxx = 0,minx = 100000,maxy = 0,miny = 1000000;
@@ -87,7 +87,7 @@ int *Limits(Eye *Olho)
 	xy[3] = maxy;
 	return xy;
 }
-
+//Cortar a imagem apagando o que estiver fora da pupila
 void StripImage(Imagem *img,int *xy)
 {
 	double raio = (xy[2]-xy[3])/2;
@@ -107,7 +107,7 @@ void StripImage(Imagem *img,int *xy)
  		}
 	}
 }
-
+//Circula a pupila em vermelho
 void red_fill(Eye *Olho,Imagem *img)
 {
 	for (int i = 0; i <=360; ++i) 
@@ -161,7 +161,7 @@ Eye **AllocateEye(int amount)
 	}
 	return olho;
 }
-
+//Função para desalocar a imagem
 void fimg (Imagem *read)
 {
 	int i;
@@ -172,7 +172,7 @@ void fimg (Imagem *read)
         free (read->p);
 	free(read); 
 }
-
+//Conta a porcentagem comprometida do olho e mostra o diagnóstico na tela
 void cimg (Imagem *img)
 {
 	int i, j, pcount = 0, ccount = 0;
