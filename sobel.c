@@ -1,14 +1,12 @@
 #include "imagem.h"
 
-Imagem *Sobel (Imagem *Foto)
-{
+Imagem *Sobel (Imagem *Foto){
 	int x, y, i, j,th;
 	// th = Otsu(Foto->histogram)-100; 
 	Imagem *Sobel;
 	Sobel = malloc (sizeof *Sobel);
 	Sobel->p = malloc (Foto->height*sizeof (Pixel*));
-	for (i=0; i<Foto->height;i++)
-	{
+	for (i=0; i<Foto->height;i++){
 		Sobel->p[i] = malloc(Foto->width * sizeof (Pixel));
 	}
 
@@ -28,18 +26,13 @@ Imagem *Sobel (Imagem *Foto)
   
 
 	//Detecção de arestas
-	for (i=0;i < Foto->height;i++)
-	{
-		for (j=0; j< Foto->width; j++)
-		{ 
+	for (i=0;i < Foto->height;i++){
+		for (j=0; j< Foto->width; j++){ 
 			pv = 0;
 			ph = 0;
-			for (y=0;y<3;y++)
-			{
-				for (x=0;x<3;x++)
-				{   
-                        if((i+y-1 < 0) || (j+x-1 < 0) || (i+y-1 >= Foto->height || j+x-1 >= Foto-> width ))
-                        {
+			for (y=0;y<3;y++){
+				for (x=0;x<3;x++){   
+                        if((i+y-1 < 0) || (j+x-1 < 0) || (i+y-1 >= Foto->height || j+x-1 >= Foto-> width )){
                           continue;
                         }
 						pv += kernelx[y][x] * Foto->p[i-1+y][j-1+x].r;
@@ -47,13 +40,11 @@ Imagem *Sobel (Imagem *Foto)
 				}
 			}
 
-                    if (sqrt(pv*pv+ph*ph)>255)
-                    {
+                    if (sqrt(pv*pv+ph*ph)>255){
                         Sobel->p[i][j].r =	1;
 
                     }
-                    else
-                    {
+                    else{
                     Sobel->p[i][j].r = (unsigned char)(sqrt(pv*pv+ph*ph));
             		Sobel->p[i][j].g = (unsigned char)(sqrt(pv*pv+ph*ph));
             		Sobel->p[i][j].b = (unsigned char)(sqrt(pv*pv+ph*ph));
@@ -76,16 +67,13 @@ Imagem *Sobel (Imagem *Foto)
        double Sk;  // The total intensity for all histogram points <=k
        double S, L=256; // The total intensity of the image
        
-	for (int i = 0; i < 256; ++i) 
-	{
+	for (int i = 0; i < 256; ++i) {
         	img->histogram[i] = 0; //Creating histogram
         } 
         
         
-       for (i=0;i < img->height;i++)
-       {
-       		for (j=0; j< img->width; j++)
-            	{ 
+       for (i=0;i < img->height;i++){
+       		for (j=0; j< img->width; j++){ 
              		value = img->p[i][j].r;
              		img->histogram[value]++;  //Filling the histogram
             	}

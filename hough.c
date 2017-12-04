@@ -1,7 +1,6 @@
 #include "imagem.h"
 #define ARR(i,j,k) accu[i*w*accu_r+j*accu_r+k]  
-Circle **HTransform(Imagem *img)
-{ 
+Circle **HTransform(Imagem *img){ 
 	int i,j,k,x,y,t,a,b,count = 0;
 	int w = img->width, h = img->height;
 	int th = 360;
@@ -62,8 +61,7 @@ Circle **HTransform(Imagem *img)
 	
 	printf("\n%d\n",mvalue[0]);
 	
-	for (int i = 0; i <10; ++i) 
-	{
+	for (int i = 0; i <10; ++i) {
 		printf("%d %d %d\n",max[i][0],max[i][1],max[i][2]); 
 	} 
 
